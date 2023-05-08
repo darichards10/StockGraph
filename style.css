@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+html{
+    width: 100%;
+}
+
+body {
+    background-color: rgb(100, 110, 99);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    display:block;
+}
+
+
+.textbox {
+    border-radius: 3px;
+    background: white;
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    margin-top: 25px;
+}
+
+.textbox input[type="submit"] {
+    background-color: rgb(100, 110, 99);
+    border-radius: 3px;
+    border: solid rgb(100, 110, 99);
+    color: white;
+}
+
+.textbox input[type="submit"]:hover {
+    background-color: white;
+    border-radius: 3px;
+    border: solid rgb(100, 110, 99);
+    color:  rgb(100, 110, 99);
+}
+
+.display-container {
+    background: white;  
+    border-radius: 3px;
+    text-align: center;
+    margin: auto;
+    max-width: 750px;
+    min-height: 500px;
+    max-height: fit-content;
+}
+
+.display-container h1 {
+    padding-top: 20px;
+}
+
+.green-hr {
+    border: 5px solid rgb(100, 110, 99);
+    height:0;
+}
+
+.chart_div  {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+    max-width: 700px; 
+    min-width: 350px;
+    height: 500px;
+    border: 1px solid black;
+}
