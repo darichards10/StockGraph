@@ -23,11 +23,11 @@
         
                 <?php
 
-                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                        $apiKey = "XSI0MA8T03B4KMMY";
+                        $apiKey = 'XSI0MA8T03B4KMMY';
 
-                        $symbol = $_POST["textbox"];
+                        $symbol = $_POST['textbox'];
                         
 
                         $url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=". urlencode($symbol) .
@@ -46,16 +46,54 @@
                         $timeZone = $metaData['6. Time Zone'];
                         
                         $ticks = $data['Time Series (5min)'];
+                        
+                        $closing_prices = array();
 
+                        foreach ($data['Time Series (5min)'] as $time => $values) {
+                            $closing_prices[] = $values['4. close'];
+                            
+                        }
 
-                       
+                        $firstTime = reset($ticks); 
+                        $closePrice = $firstTime['4. close']; 
                         
                     }
 
                     
 
                 ?>
+
+                <script type="text/javascript">
+                     google.charts.load('current', {'packages':['corechart']});
+                     google.charts.setOnLoadCallback(drawChart);
+
+                     var priceArr = <?php echo '["' . implode('","', $closing_prices) . '"]' ?>;
+
+
+                     function drawChart() {
+                        
+                        var data = new google.visualization.DataTable();
+
+                        data.addColumn('number', 'X');
+                        data.addColumn('number', 'Y');
+
+                        priceArr.forEach((value, index) =>
+                            data.addRow([index,value])
+                        );
+
+
+                        var options = {
+                            title: 'Chart Title'
+                            
+                        };
+
+                        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                     }
+                </script>
+
                     <h2> <?php echo $sym ?> </h2>
+                    <p> <?php echo $closePrice ?> </p>
                     <div class="chart_div" id="linechart"> 
 
 
