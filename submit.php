@@ -78,7 +78,7 @@
                         data.addColumn('number', 'Y');
 
                         priceArr.forEach((value, index) =>
-                            data.addRow([index,value])
+                            data.addRow([index, parseFloat(value)])
                         );
 
 
@@ -87,7 +87,7 @@
                             
                         };
 
-                        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                        var chart = new google.visualization.LineChart(document.getElementById('linechart'));
                         chart.draw(data, options);
                      }
                 </script>
